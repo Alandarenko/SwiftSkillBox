@@ -11,12 +11,16 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var buttonText: UIButton!
     @IBOutlet weak var label: UILabel!
-    
+    @IBOutlet weak var labelHeight: NSLayoutConstraint!
+    var possition = 0
     @IBAction func buttonAct(_ sender: Any) {
-        if label.numberOfLines != 5 {
-            label.numberOfLines += 1
+        let height = label.font.lineHeight
+        if possition == 0 {
+            labelHeight.constant = height * 5
+            possition = 1
         } else {
-            label.numberOfLines = 0
+            labelHeight.constant = height
+            possition = 0
         }
     }
     
@@ -24,7 +28,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        labelHeight.constant = label.font.lineHeight
     }
 
 
